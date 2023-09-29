@@ -1,0 +1,28 @@
+<div *ngFor="let survey of surveys" class="card card-body mb-2">
+    <div class="row">
+        <div class="col-md-8">
+            <ul>
+                <li>
+                    Nombre completo: {{survey.fullName}}
+                </li>
+                <li>
+                    Número de teléfono: {{survey.phoneNumber}}
+                </li>
+                <li>
+                    Fecha de inicio: {{survey.startDate}}
+                </li>
+                <li>
+                    Idioma: {{survey.preferredLanguage}}
+                </li>
+                <li>
+                    ¿Cómo nos encontraste?: {{survey.howFound}}
+                </li>
+                <li>
+                    Subscripcion: {{survey.newsletterSubscription}}
+                </li>
+            </ul>
+            <button class="btn btn-danger" (click)="deleteSurvey(survey.id || '')">Delete</button>
+            <button class="btn btn-success" [routerLink]="['/survey/edit', survey.id]">Edit</button>
+        </div>
+    </div>
+</div>

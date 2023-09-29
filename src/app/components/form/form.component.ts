@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from 'src/app/interfaces/product';
-import { ProductService } from 'src/app/services/product.service';
+import { Survey } from 'src/app/interfaces/survey';
+import { SurveyService } from 'src/app/services/survey.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -9,61 +9,53 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./form.component.css'],
 })
 export class FormComponent implements OnInit {
-  product: Product = {
-    name: '',
-    description: '',
-    price: 0,
-    image: '',
+  survey: Survey = {
+    fullName: '',
+    phoneNumber: '',
+    startDate: new Date(),
+    howFound: '',
+    preferredLanguage: '',
+    newsletterSubscription: false,
   };
 
   edit: boolean = false;
 
   constructor(
-    private productService: ProductService,
+    private surveyService: SurveyService,
     private router: Router,
     private activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit() {
     const params = this.activatedRoute.snapshot.params;
-    if (params) {
-      this.productService.getProduct(params['id'])
+    if (params['id']) {
+      this.surveyService.getSurvey(params['id'])
       .subscribe(
-        res => {
-          console.log(res);
-          this.product = res;
+        (res) => {
+          this.survey = res;
           this.edit = true;
       });
     }
   }
 
-  submitProduct() {
-    this.productService.createProducts(this.product).subscribe(
+  submitSurvey() {
+    this.surveyService.createSurveys(this.survey).subscribe(
       (res) => {
-        console.log(res);
-        this.router.navigate(['/']);
+        this.router.navigate(['/survey']);
       },
 
-      (err) => console.log(err)
+      (err) =>alert(err.message)
     );
   }
-  updateProduct() {
-    if (this.product._id) {
+  updateSurvey() {
+    if (this.survey.id) {
       // Comprueba si this.product._id no es undefined
-      delete this.product.createdAt;
-      this.productService
-        .updateProducts(this.product._id, this.product)
-        .subscribe(
-          (res) => {
-            console.log(res);
-            this.router.navigate(['/product']);
-          },
-          (err) => console.log(err)
-        );
+      this.surveyService.updateSurveys(this.survey).subscribe(
+        (res) => {
+          this.router.navigate(['/survey']);
+        },
+      );
     }
   }
-  // updateProduct(){
-  //   delete this.product.createdAt;
-  //   this.productService.updateProducts(this.product._id, this.product)
-  // }
+
 }

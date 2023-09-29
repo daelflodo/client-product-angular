@@ -1,22 +1,63 @@
 <div class="row">
-    <div class="col-sm-4 offset-md-4">
+    <div class="col-md-6 offset-md-3">
+        <div class="col-md-6 offset-md-3 text-center align-items-center">
+            <h1>Formulario</h1>
+        </div>
         <div class="card card-body">
             <!-- Si edit es true entonces ejecutamos a funcionnupdateProduct sino la funcion submitProduct -->
-            <form (submit)="edit ? updateProduct() : submitProduct()">
+            <form (submit)="edit ? updateSurvey() : submitSurvey()">
                 <div class="form-group">
-                    <input type="text" name="name" [(ngModel)]="product.name" class="form-control" placeholder="Product Name" autofocus>
+                    <label for="howFound">Nombre completo</label>
+                    <input type="text" name="fullName" [(ngModel)]="survey.fullName" class="form-control" autofocus>
                 </div>
                 <div class="form-group">
-                    <input type="text" name="description" [(ngModel)]="product.description" class="form-control" placeholder="Product Description">
+                    <label for="howFound">Número de teléfono</label>
+                    <input type="text" name="phoneNumber" [(ngModel)]="survey.phoneNumber" class="form-control">
                 </div>
                 <div class="form-group">
-                    <input type="text" name="price" [(ngModel)]="product.price" class="form-control" placeholder="Product Price">
+                    <label for="startDate">Fecha de inicio</label>
+                    <input type="text" name="startDate" [(ngModel)]="survey.startDate"
+                        class="form-control custom-datepicker" bsDatepicker>
                 </div>
                 <div class="form-group">
-                    <input type="text" name="image" [(ngModel)]="product.image" class="form-control" placeholder="Product Image">
+                    <label for="preferredLanguage">¿Cuál es tu idioma preferido?</label>
+                    <select name="preferredLanguage" [(ngModel)]="survey.preferredLanguage" class="form-control">
+                        <option value="Ingles">Inglés</option>
+                        <option value="Espanol">Español</option>
+                        <option value="Frances">Francés</option>
+                        <option value="Aleman">Alemán</option>
+                    </select>
                 </div>
+                <div class="form-group">
+                    <label>¿Cómo nos encontraste?</label>
+                    <div class="form-check">
+                        <input type="radio" id="friends" name="howFound" value="Amigos" [(ngModel)]="survey.howFound"
+                            class="form-check-input">
+                        <label for="friends" class="form-check-label">Amigos</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" id="onlineSearch" name="howFound" value="BusquedaEnLinea"
+                            [(ngModel)]="survey.howFound" class="form-check-input">
+                        <label for="onlineSearch" class="form-check-label">Búsqueda en línea</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" id="advertisement" name="howFound" value="Publicidad"
+                            [(ngModel)]="survey.howFound" class="form-check-input">
+                        <label for="advertisement" class="form-check-label">Publicidad</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="form-check">
+                        <input type="checkbox" id="newsletterSubscription" name="newsletterSubscription"
+                            [(ngModel)]="survey.newsletterSubscription" class="form-check-input">
+                        <label for="newsletterSubscription" class="form-check-label">¿Desea recibir nuestro boletín
+                            informativo?</label>
+                    </div>
+                </div>
+
                 <button class="btn btn-primary btn-block">
-                    Save
+                    Enviar
                 </button>
             </form>
 

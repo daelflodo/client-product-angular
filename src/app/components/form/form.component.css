@@ -1,0 +1,5 @@
+.custom-datepicker .bs-datepicker-container {
+    background-color: #fff; /* Cambia el color de fondo del calendario a blanco */
+    border: 1px solid #ccc; /* Agrega un borde alrededor del calendario */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Agrega una sombra al calendario */
+}

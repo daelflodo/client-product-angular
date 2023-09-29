@@ -1,23 +1,23 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { ProductComponent } from './components/product/product.component';
+import { SurveyComponent } from './components/survey/survey.component';
 import { FormComponent } from './components/form/form.component';
 const routes: Routes = [
   {
     path: '',
-    component: ProductComponent,
-  },
-  {
-    path: 'product',
-    component: ProductComponent,
-  },
-  {
-    path: 'product/create',
     component: FormComponent,
   },
   {
-    path: 'product/edit/:id',
+    path: 'survey',
+    component: SurveyComponent,
+  },
+  {
+    path: 'survey/create',
+    component: FormComponent,
+  },
+  {
+    path: 'survey/edit/:id',
     component: FormComponent,
   },
 ];
